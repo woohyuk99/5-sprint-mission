@@ -1,24 +1,26 @@
 package com.sprint.mission.discodeit.entity;
 import java.util.UUID;
 
-public class User {
+public class User extends BaseEntity {
 
-    private UUID id;
-    private String password;
+    String username;
 
-    public User() {
-        this.id = id;
+    public User(String username){
+        super(UUID.randomUUID(), System.currentTimeMillis());
+        this.username = username;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(id);
-        sb.append('}');
-        return sb.toString();
+    public String getUsername() {
+        // getter은 읽기 전용
+        return username;
     }
 
-    public static void main(String[] args) {
-        System.out.println("HelloWorld!");
+    public void updateUsername(String username) {
+        this.username = username;
+        updateTimestamp(); // 업데이트 시점의 현재 시간을 밀리초 단위로 저장
     }
+    // setUsername 대신 updateUsername 사용
+    // 의미 있는 동작으로 명확하게 표현
+
+
 }
